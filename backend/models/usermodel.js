@@ -24,11 +24,14 @@ const UserSchema= new mongoose.Schema({
        minlength:8
     },
 
-    passwordConfirmation:{
+    passwordConfirmation:{ // this would be used only for creating and updating the data
         type:String,
         required:[true,'Pls enter the password'],
+        validate:function(el){
+            return el===this.password
+        }
     }
 });
 
     const User= mongoose.model('User',UserSchema)
-    module.export=User
+    module.exports=User
